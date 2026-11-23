@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blossom & Bow | Cute Boutique & Lifestyle Store</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Quicksand & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', 'Inter', sans-serif;
+        }
+        /* Custom smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar for cart drawer */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff5f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fbcfe8;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f472b6;
+        }
+    </style>
+</head>
+<body class="bg-[#fffdfd] text-gray-700 antialiased selection:bg-pink-300 selection:text-pink-900">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-teal-200 text-purple-950 text-xs sm:text-sm py-2 px-4 text-center font-bold tracking-wide">
+        <span>🌸 Free shipping on orders over $50! Use code <strong class="underline">BLOSSOM10</strong> for 10% off your cute haul. ✨</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-pink-100 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center lg:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-2xl text-pink-500 hover:text-pink-600 hover:bg-pink-50 transition focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center space-x-2">
+                    <a href="#" class="flex items-center space-x-2.5">
+                        <div class="w-10 h-10 rounded-2xl bg-pink-300 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-pink-200">
+                            🎀
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-gray-800">Blossom<span class="text-pink-500">&</span>Bow</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold">
+                    <a href="#home" class="text-pink-600 hover:text-pink-700 transition">Home</a>
+                    <a href="#categories" class="text-gray-600 hover:text-pink-600 transition">Categories</a>
+                    <a href="#shop" class="text-gray-600 hover:text-pink-600 transition">Cute Shop</a>
+                    <a href="#offers" class="text-gray-600 hover:text-pink-600 transition">Special Treats</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-pink-600 transition">Reviews</a>
+                </nav>
+
+                <!-- Header Actions (Search, Cart, Profile) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search Trigger / Quick Search Bar -->
+                    <div class="hidden md:flex items-center relative">
+                        <input type="text" id="header-search" placeholder="Search cute things..." class="bg-pink-50/70 text-sm rounded-full pl-10 pr-4 py-2 border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white w-48 lg:w-64 transition">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-pink-400 text-sm"></i>
+                    </div>
+
+                    <!-- Cart Toggle Button -->
+                    <button id="cart-btn" class="relative p-2.5 rounded-2xl bg-pink-50 hover:bg-pink-100 text-pink-600 transition focus:outline-none shadow-xs">
+                        <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                    </button>
+
+                    <!-- User Profile Placeholder -->
+                    <button id="user-btn" onclick="showNotification('Cute profile modal opened! 💖', 'info')" class="hidden sm:flex p-2.5 rounded-2xl bg-pink-50 hover:bg-pink-100 text-pink-600 transition focus:outline-none">
+                        <i class="fa-regular fa-user text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-pink-100 px-4 pt-2 pb-6 space-y-3">
+            <div class="relative mb-3">
+                <input type="text" id="mobile-search" placeholder="Search cute things..." class="w-full bg-pink-50/70 text-sm rounded-2xl pl-10 pr-4 py-2.5 border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-pink-400 text-sm"></i>
+            </div>
+            <a href="#home" class="block px-3 py-2 rounded-xl text-base font-semibold text-pink-600 bg-pink-50">Home</a>
+            <a href="#categories" class="block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:bg-pink-50 hover:text-pink-600">Categories</a>
+            <a href="#shop" class="block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:bg-pink-50 hover:text-pink-600">Cute Shop</a>
+            <a href="#offers" class="block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:bg-pink-50 hover:text-pink-600">Special Treats</a>
+            <a href="#reviews" class="block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:bg-pink-50 hover:text-pink-600">Reviews</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="home">
+
+        <!-- Hero Promotional Banner Section -->
+        <section class="relative bg-gradient-to-br from-pink-100 via-purple-100 to-teal-50 text-gray-800 overflow-hidden py-20 lg:py-28">
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ec4899_1px,transparent_1px)] [background-size:20px_20px]"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <span class="inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-white text-pink-600 border border-pink-200 shadow-xs">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-2 text-pink-400"></i> Spring Pastel Collection ✨
+                        </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-gray-800">
+                            Add a Touch of Magic to Your Day with <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500">Blossom & Bow</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 font-medium">
+                            Discover adorable pastel gadgets, cozy loungewear, aesthetic room decor, and charming accessories crafted to bring smiles.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-2">
+                            <a href="#shop" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-pink-500 text-white font-bold hover:bg-pink-600 transition shadow-lg shadow-pink-200 text-center">
+                                Shop Cute Stuff <i class="fa-solid fa-heart ml-2 text-xs"></i>
+                            </a>
+                            <a href="#offers" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-purple-700 font-bold hover:bg-purple-50 border border-purple-200 shadow-sm transition text-center">
+                                Special Treats 🎁
+                            </a>
+                        </div>
+                        <div class="pt-6 flex items-center justify-center lg:justify-start space-x-6 text-gray-500 text-sm font-medium">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-truck-fast text-pink-400"></i>
+                                <span>Fast & Pink Shipping</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-face-smile text-purple-400"></i>
+                                <span>100% Happiness</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-pink-300 via-purple-300 to-teal-200 rounded-3xl blur-2xl opacity-40 animate-pulse"></div>
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Cute Pastel Fashion & Accessories" class="relative rounded-3xl shadow-xl object-cover w-full h-[420px] border-4 border-white" onerror="this.src='https://placehold.co/600x400/fbcfe8/db2777?text=Blossom+%26+Bow'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                    <div>
+                        <span class="text-pink-500 font-bold text-sm uppercase tracking-wider">Explore Collections</span>
+                        <h2 class="text-3xl font-extrabold text-gray-800 mt-1">Shop by Aesthetic 🌸</h2>
+                    </div>
+                    <p class="text-gray-500 text-sm mt-2 md:mt-0 font-medium">Handpicked pastel categories for your cute lifestyle.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="category-cards-container">
+                    <!-- Category items will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Banner Grid -->
+        <section class="py-12 bg-[#fff9fb]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Promo Banner 1 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-md bg-gradient-to-r from-pink-200 to-purple-200 text-gray-800 p-8 sm:p-12 flex flex-col justify-between h-72 border border-pink-100">
+                        <div class="absolute right-0 bottom-0 opacity-15 transform translate-x-6 translate-y-6">
+                            <i class="fa-solid fa-headphones text-9xl text-purple-600"></i>
+                        </div>
+                        <div class="relative z-10 max-w-xs">
+                            <span class="bg-white/80 text-pink-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-xs">Pastel Audio</span>
+                            <h3 class="text-3xl font-extrabold mt-3 leading-tight text-purple-950">Kawaii Wireless Gear</h3>
+                            <p class="text-purple-900/80 text-sm mt-2 font-medium">Marshmallow-soft earcups and magical high-fidelity sound.</p>
+                        </div>
+                        <div class="relative z-10 pt-4">
+                            <button onclick="filterByCategory('Electronics'); scrollToShop();" class="inline-flex items-center space-x-2 bg-white text-purple-900 font-bold px-5 py-2.5 rounded-2xl hover:bg-pink-50 transition shadow-sm text-sm">
+                                <span>Explore Audio</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo Banner 2 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-md bg-gradient-to-r from-teal-100 to-mint-200 text-gray-800 p-8 sm:p-12 flex flex-col justify-between h-72 border border-teal-100" style="background: linear-gradient(to right, #ccfbf1, #e0f2fe);">
+                        <div class="absolute right-0 bottom-0 opacity-15 transform translate-x-6 translate-y-6">
+                            <i class="fa-solid fa-shirt text-9xl text-teal-600"></i>
+                        </div>
+                        <div class="relative z-10 max-w-xs">
+                            <span class="bg-white/80 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-xs">Cozy Season</span>
+                            <h3 class="text-3xl font-extrabold mt-3 leading-tight text-teal-950">Pastel Knitwear & Tees</h3>
+                            <p class="text-teal-900/80 text-sm mt-2 font-medium">Super soft organic cotton in dreamy pastel lavender & mint.</p>
+                        </div>
+                        <div class="relative z-10 pt-4">
+                            <button onclick="filterByCategory('Apparel'); scrollToShop();" class="inline-flex items-center space-x-2 bg-white text-teal-900 font-bold px-5 py-2.5 rounded-2xl hover:bg-teal-50 transition shadow-sm text-sm">
+                                <span>Shop Apparel</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Product Catalog Section -->
+        <section id="shop" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                    <div>
+                        <span class="text-pink-500 font-bold text-sm uppercase tracking-wider">Sweet Picks</span>
+                        <h2 class="text-3xl font-extrabold text-gray-800 mt-1">Featured & Cute Products ✨</h2>
+                    </div>
+                    <!-- Filter Pills & Sort -->
+                    <div class="mt-6 md:mt-0 flex flex-wrap items-center gap-3">
+                        <div class="flex items-center space-x-1.5 bg-pink-50 p-1.5 rounded-2xl text-sm border border-pink-100" id="category-filter-buttons">
+                            <button onclick="filterByCategory('All')" class="category-filter-btn px-4 py-2 rounded-xl font-bold transition bg-white text-pink-600 shadow-xs" data-category="All">All</button>
+                            <button onclick="filterByCategory('Electronics')" class="category-filter-btn px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-pink-600 transition" data-category="Electronics">Electronics</button>
+                            <button onclick="filterByCategory('Apparel')" class="category-filter-btn px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-pink-600 transition" data-category="Apparel">Apparel</button>
+                            <button onclick="filterByCategory('Home & Living')" class="category-filter-btn px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-pink-600 transition" data-category="Home & Living">Home</button>
+                            <button onclick="filterByCategory('Accessories')" class="category-filter-btn px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-pink-600 transition" data-category="Accessories">Accessories</button>
+                        </div>
+                        <!-- Sort Dropdown -->
+                        <select id="sort-select" onchange="sortProducts()" class="bg-pink-50 text-sm rounded-2xl px-4 py-2.5 border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-300 font-semibold text-gray-700">
+                            <option value="featured">Sort by: Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="product-grid">
+                    <!-- Products dynamically injected here -->
+                </div>
+
+                <!-- Empty state for search/filters -->
+                <div id="no-products-msg" class="hidden text-center py-16">
+                    <div class="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto text-pink-500 text-2xl mb-4">
+                        <i class="fa-solid fa-heart-crack"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">No cute items found</h3>
+                    <p class="text-gray-500 text-sm mt-1 font-medium">Try searching for something else or reset your filter.</p>
+                    <button onclick="resetFilters()" class="mt-4 px-6 py-2.5 bg-pink-500 text-white text-sm font-bold rounded-2xl hover:bg-pink-600 transition shadow-md shadow-pink-200">Reset Filters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Offers & Deals Banner -->
+        <section id="offers" class="py-16 bg-gradient-to-br from-pink-50 via-purple-50 to-teal-50 text-gray-800 border-y border-pink-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-12">
+                    <div>
+                        <span class="text-pink-600 font-bold text-sm uppercase tracking-wider">Limited Time Treats</span>
+                        <h2 class="text-3xl font-extrabold mt-1 text-gray-800">Special Deals & Flash Sales 🎀</h2>
+                    </div>
+                    <!-- Countdown Timer -->
+                    <div class="mt-4 md:mt-0 flex items-center space-x-3 bg-white px-6 py-3 rounded-2xl shadow-sm border border-pink-200">
+                        <span class="text-xs uppercase font-bold text-pink-500">Ends In:</span>
+                        <div class="flex items-center space-x-2 text-sm font-mono font-bold text-purple-900">
+                            <span id="timer-hours" class="bg-pink-100 px-2.5 py-1 rounded-xl">12</span>:
+                            <span id="timer-mins" class="bg-pink-100 px-2.5 py-1 rounded-xl">45</span>:
+                            <span id="timer-secs" class="bg-pink-100 px-2.5 py-1 rounded-xl">30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Offer Products Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="special-offers-grid">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Testimonials & Reviews -->
+        <section id="reviews" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-pink-500 font-bold text-sm uppercase tracking-wider">Happy Besties</span>
+                    <h2 class="text-3xl font-extrabold text-gray-800 mt-1">What Our Cuties Say 💖</h2>
+                    <p class="text-gray-500 text-sm mt-2 font-medium">Read glowing reviews from shoppers who love our aesthetic items and packaging.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="bg-[#fff9fb] p-8 rounded-3xl shadow-xs border border-pink-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic text-sm leading-relaxed font-medium">"The pastel wireless headphones are even cuter in person! The packaging had ribbons and stickers too. I am obsessed! 🥺✨"</p>
+                        </div>
+                        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-pink-100">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Sarah J." class="w-11 h-11 rounded-full object-cover border-2 border-pink-200" onerror="this.src='https://placehold.co/100x100/fbcfe8/ffffff?text=SJ'">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Sarah Jenkins</h4>
+                                <p class="text-xs text-pink-500 font-semibold">Verified Cutie</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-[#fff9fb] p-8 rounded-3xl shadow-xs border border-pink-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic text-sm leading-relaxed font-medium">"Blossom & Bow has the absolute coziest aesthetic apparel. The lavender organic cotton hoodie is my go-to comfy outfit now! 🌸"</p>
+                        </div>
+                        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-pink-100">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Marcus T." class="w-11 h-11 rounded-full object-cover border-2 border-pink-200" onerror="this.src='https://placehold.co/100x100/fbcfe8/ffffff?text=MT'">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Marcus Taylor</h4>
+                                <p class="text-xs text-pink-500 font-semibold">Verified Cutie</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-[#fff9fb] p-8 rounded-3xl shadow-xs border border-pink-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <p class="text-gray-700 italic text-sm leading-relaxed font-medium">"The ceramic mug set and smart desk lamp completely brightened up my study nook. Super aesthetic and high quality! ☕🌷"</p>
+                        </div>
+                        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-pink-100">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Elena R." class="w-11 h-11 rounded-full object-cover border-2 border-pink-200" onerror="this.src='https://placehold.co/100x100/fbcfe8/ffffff?text=ER'">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Elena Rostova</h4>
+                                <p class="text-xs text-pink-500 font-semibold">Verified Cutie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Subscription Section -->
+        <section class="py-16 bg-gradient-to-r from-pink-300 via-purple-300 to-teal-200 text-purple-950">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="bg-white/80 text-pink-600 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-xs">Join The Club</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Get 15% Off Your First Cute Haul! 🎀</h2>
+                <p class="text-purple-950 max-w-xl mx-auto text-sm sm:text-base font-medium">Subscribe for adorable weekly drops, secret pastel discount codes, and cozy style inspo.</p>
+                <form onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row items-center justify-center max-w-md mx-auto gap-3 pt-2">
+                    <input type="email" id="newsletter-email" required placeholder="Enter your email bestie" class="w-full sm:flex-1 bg-white/80 border border-white rounded-2xl px-4 py-3.5 text-gray-800 placeholder-purple-400 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 shadow-xs">
+                    <button type="submit" class="w-full sm:w-auto bg-pink-500 text-white font-bold px-7 py-3.5 rounded-2xl hover:bg-pink-600 transition shadow-md shadow-pink-300 text-sm">Subscribe ✨</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-9 h-9 rounded-2xl bg-pink-500 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            🎀
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">Blossom<span class="text-pink-400">&</span>Bow</span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-sm leading-relaxed font-medium">
+                        Blossom & Bow is your cozy online boutique for aesthetic pastel lifestyle gear, adorable apparel, and charming home goodies. Made with love & sparkles.
+                    </p>
+                    <div class="flex items-center space-x-4 pt-2 text-gray-400">
+                        <a href="#" class="w-10 h-10 rounded-2xl bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-2xl bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-2xl bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition"><i class="fa-brands fa-twitter text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-2xl bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition"><i class="fa-brands fa-pinterest-p text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm font-medium">
+                        <li><a href="#home" class="hover:text-pink-400 transition">Home</a></li>
+                        <li><a href="#categories" class="hover:text-pink-400 transition">Categories</a></li>
+                        <li><a href="#shop" class="hover:text-pink-400 transition">Cute Shop</a></li>
+                        <li><a href="#offers" class="hover:text-pink-400 transition">Special Treats</a></li>
+                        <li><a href="#reviews" class="hover:text-pink-400 transition">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Customer Care -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Customer Care</h4>
+                    <ul class="space-y-2.5 text-sm font-medium">
+                        <li><a href="#" onclick="showNotification('Contact Support modal opened! 💖', 'info')" class="hover:text-pink-400 transition">Contact Us</a></li>
+                        <li><a href="#" onclick="showNotification('Track order status page simulated! ✨', 'info')" class="hover:text-pink-400 transition">Track Order</a></li>
+                        <li><a href="#" onclick="showNotification('Return & exchange policy opened!', 'info')" class="hover:text-pink-400 transition">Returns & Exchanges</a></li>
+                        <li><a href="#" onclick="showNotification('Shipping information opened!', 'info')" class="hover:text-pink-400 transition">Shipping Info</a></li>
+                        <li><a href="#" onclick="showNotification('FAQ page opened!', 'info')" class="hover:text-pink-400 transition">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Store Info -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Boutique HQ</h4>
+                    <p class="text-sm leading-relaxed font-medium">
+                        88 Sakura Blossom Way<br>
+                        Suite 3B<br>
+                        San Francisco, CA 94107<br>
+                        hello@blossomandbow.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-medium">
+                <p>&copy; 2026 Blossom & Bow Boutique. Made with 💖 for cute aesthetics.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-pink-400 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-pink-400 transition">Terms of Service</a>
+                    <a href="#" class="hover:text-pink-400 transition">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Slide-over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="cart-backdrop" class="absolute inset-0 bg-gray-900/50 backdrop-blur-xs transition-opacity opacity-0"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div id="cart-panel" class="w-screen max-w-md bg-white shadow-2xl transform transition-transform translate-x-full duration-300 flex flex-col">
+                <!-- Cart Header -->
+                <div class="flex items-center justify-between px-6 py-5 border-b border-pink-100 bg-pink-50/50">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping text-pink-500 text-lg"></i>
+                        <h3 class="font-bold text-gray-800 text-lg">Your Cute Shopping Bag</h3>
+                        <span id="cart-count-badge" class="ml-2 bg-pink-100 text-pink-700 text-xs font-bold px-2.5 py-0.5 rounded-full">0 items</span>
+                    </div>
+                    <button id="close-cart-btn" class="p-2 rounded-2xl text-gray-400 hover:text-gray-600 hover:bg-pink-100 transition">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Body / Items list -->
+                <div class="flex-1 overflow-y-auto px-6 py-4 space-y-4" id="cart-items-container">
+                    <!-- Cart items rendered dynamically -->
+                </div>
+
+                <!-- Cart Footer / Checkout -->
+                <div class="border-t border-pink-100 px-6 py-5 bg-[#fff9fb] space-y-4">
+                    <div class="space-y-2 text-sm font-medium">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="font-bold text-gray-800">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Estimated Shipping</span>
+                            <span class="font-bold text-teal-600">Free ✨</span>
+                        </div>
+                        <div class="flex justify-between text-base font-extrabold text-gray-800 pt-2 border-t border-pink-200">
+                            <span>Total</span>
+                            <span id="cart-total" class="text-pink-600">$0.00</span>
+                        </div>
+                    </div>
+                    <button onclick="openCheckoutModal()" id="checkout-btn" class="w-full bg-pink-500 text-white font-bold py-3.5 rounded-2xl hover:bg-pink-600 transition shadow-md shadow-pink-200 text-center flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span>Proceed to Secure Checkout</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                    <button onclick="clearCart()" class="w-full text-gray-400 hover:text-pink-600 text-xs font-bold transition py-1">
+                        Clear Bag
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-xs" onclick="closeQuickView()"></div>
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden z-10 p-6 sm:p-8 animate-in fade-in zoom-in-95 duration-200 border border-pink-100">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 p-2.5 rounded-full bg-pink-50 hover:bg-pink-100 text-gray-600 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="quick-view-content" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-xs" onclick="closeCheckoutModal()"></div>
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-xl w-full overflow-hidden z-10 p-6 sm:p-8 border border-pink-100">
+            <div class="flex items-center justify-between pb-4 border-b border-pink-100">
+                <h3 class="text-xl font-bold text-gray-800">Secure Cute Checkout 🎀</h3>
+                <button onclick="closeCheckoutModal()" class="p-2 rounded-full bg-pink-50 hover:bg-pink-100 text-gray-600 transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleCheckoutSubmit(event)" class="space-y-4 pt-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">First Name</label>
+                        <input type="text" required placeholder="Bestie" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Last Name</label>
+                        <input type="text" required placeholder="Cutie" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                    <input type="email" required placeholder="bestie@example.com" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Shipping Address</label>
+                    <input type="text" required placeholder="88 Sakura Lane, Apt 2" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">City</label>
+                        <input type="text" required placeholder="San Francisco" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">State</label>
+                        <input type="text" required placeholder="CA" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Zip Code</label>
+                        <input type="text" required placeholder="94107" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Card Information</label>
+                    <div class="relative">
+                        <input type="text" required placeholder="4242 •••• •••• 4242" class="w-full bg-pink-50/50 border border-pink-200 rounded-2xl pl-4 pr-12 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium">
+                        <i class="fa-solid fa-credit-card absolute right-4 top-3 text-pink-400"></i>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-pink-500 text-white font-bold py-3.5 rounded-2xl hover:bg-pink-600 transition shadow-md shadow-pink-200 text-sm flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-lock text-xs"></i>
+                        <span id="checkout-total-btn-text">Complete Order ($0.00)</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Mock Database of Cute Products
+        const products = [
+            {
+                id: 1,
+                name: "Pastel Pink Marshmallow Headphones",
+                category: "Electronics",
+                price: 199.99,
+                originalPrice: 249.99,
+                rating: 4.9,
+                reviewsCount: 142,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+                badge: "Best Seller 🌸",
+                isFeatured: true,
+                isSpecialOffer: false,
+                description: "Super soft active noise-cancelling pastel pink wireless headphones with plush ear cushions and dreamy sound quality."
+            },
+            {
+                id: 2,
+                name: "Lavender Dreams Organic Hoodie",
+                category: "Apparel",
+                price: 68.00,
+                originalPrice: 85.00,
+                rating: 4.7,
+                reviewsCount: 98,
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
+                badge: "Save 20% ✨",
+                isFeatured: true,
+                isSpecialOffer: true,
+                description: "Crafted from 100% organic cotton in soothing lavender pastel for ultimate cozy bestie days and relaxed wear."
+            },
+            {
+                id: 3,
+                name: "Minty Fresh Smart Desk Lamp",
+                category: "Home & Living",
+                price: 49.99,
+                originalPrice: 65.00,
+                rating: 4.8,
+                reviewsCount: 76,
+                image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
+                badge: "New 🎀",
+                isFeatured: true,
+                isSpecialOffer: false,
+                description: "Dimmable mint green LED desk lamp featuring a built-in wireless smartphone charging pad and soft nightlight mode."
+            },
+            {
+                id: 4,
+                name: "Rose Gold Aesthetic Chronograph",
+                category: "Accessories",
+                price: 299.00,
+                originalPrice: 350.00,
+                rating: 4.9,
+                reviewsCount: 210,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+                badge: "Limited Deal 💖",
+                isFeatured: true,
+                isSpecialOffer: true,
+                description: "Gorgeous rose gold watch featuring sapphire crystal glass, minimalist face, and waterproof stainless steel mesh."
+            },
+            {
+                id: 5,
+                name: "Blossom Pink Ultra Action Camera",
+                category: "Electronics",
+                price: 249.99,
+                originalPrice: 299.99,
+                rating: 4.6,
+                reviewsCount: 54,
+                image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80",
+                badge: "Popular ⭐",
+                isFeatured: false,
+                isSpecialOffer: false,
+                description: "Capture your fun adventures in stunning 4K resolution with image stabilization in a cute custom pink shell."
+            },
+            {
+                id: 6,
+                name: "Mint Pastel Knit Sweater",
+                category: "Apparel",
+                price: 95.00,
+                originalPrice: 120.00,
+                rating: 4.8,
+                reviewsCount: 118,
+                image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80",
+                badge: "Trending 🌿",
+                isFeatured: true,
+                isSpecialOffer: true,
+                description: "Luxuriously soft extra-fine merino wool sweater in mint pastel designed for year-round warmth and cute fits."
+            },
+            {
+                id: 7,
+                name: "Sakura Ceramic Pour-Over Set",
+                category: "Home & Living",
+                price: 42.00,
+                originalPrice: 55.00,
+                rating: 4.9,
+                reviewsCount: 89,
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+                badge: "Bestseller ☕",
+                isFeatured: false,
+                isSpecialOffer: false,
+                description: "Artisan-crafted pastel ceramic coffee brewer for the cutest morning coffee ritual and delicious flavor."
+            },
+            {
+                id: 8,
+                name: "Pastel Blush Leather Backpack",
+                category: "Accessories",
+                price: 159.00,
+                originalPrice: 199.00,
+                rating: 4.7,
+                reviewsCount: 65,
+                image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80",
+                badge: "Sale 💕",
+                isFeatured: true,
+                isSpecialOffer: true,
+                description: "Full-grain soft leather backpack in blush pink with dedicated padded sleeve for up to 15-inch laptops."
+            }
+        ];
+
+        // Categories Data
+        const categories = [
+            { name: "Electronics", icon: "fa-laptop", count: "14 cute items", image: "https://images.unsplash.com/photo-1498049860654-af1a53671361?auto=format&fit=crop&w=400&q=80" },
+            { name: "Apparel", icon: "fa-shirt", count: "24 cozy styles", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" },
+            { name: "Home & Living", icon: "fa-couch", count: "18 aesthetic decors", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=400&q=80" },
+            { name: "Accessories", icon: "fa-glasses", count: "32 sweet goodies", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        // Application State
+        let cart = [];
+        let currentCategory = 'All';
+        let searchQuery = '';
+
+        // DOM Ready Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderProducts();
+            renderSpecialOffers();
+            setupEventListeners();
+            startCountdownTimer();
+        });
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Cart drawer toggle
+            document.getElementById('cart-btn').addEventListener('click', toggleCartDrawer);
+            document.getElementById('close-cart-btn').addEventListener('click', toggleCartDrawer);
+            document.getElementById('cart-backdrop').addEventListener('click', toggleCartDrawer);
+
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+
+            // Search inputs
+            const searchHandler = (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderProducts();
+            };
+            document.getElementById('header-search').addEventListener('input', searchHandler);
+            document.getElementById('mobile-search').addEventListener('input', searchHandler);
+        }
+
+        // Render Categories
+        function renderCategories() {
+            const container = document.getElementById('category-cards-container');
+            container.innerHTML = categories.map(cat => `
+                <div onclick="filterByCategory('${cat.name}'); scrollToShop();" class="group relative rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition cursor-pointer h-48 bg-pink-100 border border-pink-100">
+                    <img src="${cat.image}" alt="${cat.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80" onerror="this.src='https://placehold.co/400x300/fbcfe8/db2777?text=${cat.name}'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-pink-950/70 via-pink-950/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <h3 class="font-bold text-lg group-hover:text-pink-200 transition">${cat.name}</h3>
+                        <p class="text-xs text-pink-100 mt-0.5 font-medium">${cat.count}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Products Catalog
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            const noProductsMsg = document.getElementById('no-products-msg');
+
+            let filtered = products.filter(p => {
+                const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.description.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            // Apply sorting
+            const sortVal = document.getElementById('sort-select').value;
+            if (sortVal === 'price-low') filtered.sort((a,b) => a.price - b.price);
+            else if (sortVal === 'price-high') filtered.sort((a,b) => b.price - a.price);
+            else if (sortVal === 'rating') filtered.sort((a,b) => b.rating - a.rating);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noProductsMsg.classList.remove('hidden');
+                return;
+            }
+
+            noProductsMsg.classList.add('hidden');
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-3xl border border-pink-100 shadow-xs hover:shadow-xl transition duration-300 flex flex-col overflow-hidden group">
+                    <div class="relative bg-pink-50 h-64 overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-xl shadow-sm">${p.badge}</span>
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/500x500/fff1f2/db2777?text=Cute+Product'">
+                        <div class="absolute inset-x-3 bottom-3 flex space-x-2 opacity-0 group-hover:opacity-100 transition duration-300">
+                            <button onclick="quickView(${p.id})" class="flex-1 bg-white/95 backdrop-blur-md text-gray-800 font-bold py-2.5 rounded-2xl text-xs hover:bg-white shadow-md transition">Quick View</button>
+                            <button onclick="addToCart(${p.id})" class="bg-pink-500 text-white p-2.5 rounded-2xl hover:bg-pink-600 shadow-md transition"><i class="fa-solid fa-cart-plus text-sm"></i></button>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">${p.category}</span>
+                            <h3 onclick="quickView(${p.id})" class="font-bold text-gray-800 text-base mt-1 hover:text-pink-600 transition cursor-pointer line-clamp-1">${p.name}</h3>
+                            <div class="flex items-center space-x-1.5 mt-2">
+                                <div class="flex items-center text-amber-400 text-xs">
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="ml-1 font-bold text-gray-700">${p.rating}</span>
+                                </div>
+                                <span class="text-pink-200">•</span>
+                                <span class="text-xs text-gray-400 font-medium">(${p.reviewsCount} reviews)</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-pink-50 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-extrabold text-pink-600">$${p.price.toFixed(2)}</span>
+                                ${p.originalPrice ? `<span class="text-xs text-gray-400 line-through ml-1.5 font-medium">$${p.originalPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <button onclick="addToCart(${p.id})" class="p-2.5 rounded-2xl bg-pink-50 text-pink-600 hover:bg-pink-500 hover:text-white transition shadow-xs">
+                                <i class="fa-solid fa-plus text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Special Offers
+        function renderSpecialOffers() {
+            const container = document.getElementById('special-offers-grid');
+            const specialProducts = products.filter(p => p.isSpecialOffer);
+
+            container.innerHTML = specialProducts.map(p => `
+                <div class="bg-white border border-pink-200 rounded-3xl overflow-hidden shadow-md flex flex-col justify-between group">
+                    <div class="relative h-56 bg-pink-50 overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-xl shadow-sm">Flash Treat 🎀</span>
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/500x500/f3e8ff/9333ea?text=Special+Treat'">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-purple-600 uppercase">${p.category}</span>
+                            <h3 class="font-bold text-gray-800 text-base mt-1 line-clamp-1">${p.name}</h3>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-pink-50 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-extrabold text-pink-600">$${p.price.toFixed(2)}</span>
+                                <span class="text-xs text-gray-400 line-through ml-1 font-medium">$${p.originalPrice.toFixed(2)}</span>
+                            </div>
+                            <button onclick="addToCart(${p.id})" class="bg-pink-100 text-pink-700 font-bold px-4 py-2 rounded-2xl text-xs hover:bg-pink-500 hover:text-white transition shadow-xs">
+                                Add to Bag
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter by Category
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Update active state of filter pills
+            document.querySelectorAll('.category-filter-btn').forEach(btn => {
+                if(btn.getAttribute('data-category') === category) {
+                    btn.className = "category-filter-btn px-4 py-2 rounded-xl font-bold transition bg-white text-pink-600 shadow-xs";
+                } else {
+                    btn.className = "category-filter-btn px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-pink-600 transition";
+                }
+            });
+
+            renderProducts();
+        }
+
+        function resetFilters() {
+            currentCategory = 'All';
+            searchQuery = '';
+            document.getElementById('header-search').value = '';
+            document.getElementById('mobile-search').value = '';
+            filterByCategory('All');
+        }
+
+        function scrollToShop() {
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Sort Products
+        function sortProducts() {
+            renderProducts();
+        }
+
+        // Cart Management
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showNotification(`Added "${product.name}" to your cute bag! 💖`, 'success');
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showNotification('Item removed from bag.', 'info');
+        }
+
+        function updateQuantity(productId, delta) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                updateCartUI();
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+            showNotification('Shopping bag cleared.', 'info');
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Update badges
+            document.getElementById('cart-badge').innerText = totalCount;
+            document.getElementById('cart-count-badge').innerText = `${totalCount} items`;
+
+            // Update items container
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16">
+                        <div class="w-14 h-14 bg-pink-50 rounded-full flex items-center justify-center mx-auto text-pink-400 text-xl mb-3">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <p class="font-bold text-gray-800">Your bag is empty bestie</p>
+                        <p class="text-xs text-gray-400 mt-1 font-medium">Add cute items to start shopping</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-4 py-3 border-b border-pink-100">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-2xl object-cover bg-pink-50" onerror="this.src='https://placehold.co/100x100/fff1f2/db2777?text=Item'">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800 text-sm line-clamp-1">${item.name}</h4>
+                            <p class="text-pink-600 font-bold text-sm mt-0.5">$${item.price.toFixed(2)}</p>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-600 flex items-center justify-center text-xs transition"><i class="fa-solid fa-minus"></i></button>
+                                <span class="text-xs font-bold text-gray-800">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-600 flex items-center justify-center text-xs transition"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-pink-600 p-2 transition"><i class="fa-solid fa-trash-can text-sm"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            // Update subtotal & total
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-total').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('checkout-total-btn-text').innerText = `Complete Order ($${subtotal.toFixed(2)})`;
+
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (cart.length === 0) {
+                checkoutBtn.setAttribute('disabled', 'true');
+            } else {
+                checkoutBtn.removeAttribute('disabled');
+            }
+        }
+
+        // Toggle Cart Drawer
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-backdrop');
+            const panel = document.getElementById('cart-panel');
+
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    backdrop.classList.add('opacity-100');
+                    panel.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                backdrop.classList.remove('opacity-100');
+                panel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Quick View Modal
+        function quickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const content = document.getElementById('quick-view-content');
+            content.innerHTML = `
+                <div class="relative bg-pink-50 rounded-2xl overflow-hidden h-80">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x500/fff1f2/db2777?text=Product'">
+                </div>
+                <div class="space-y-4">
+                    <span class="bg-pink-100 text-pink-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">${product.category}</span>
+                    <h2 class="text-2xl font-bold text-gray-800">${product.name}</h2>
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center text-amber-400 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="ml-1 font-bold text-gray-700">${product.rating}</span>
+                        </div>
+                        <span class="text-pink-200">•</span>
+                        <span class="text-xs text-gray-500 font-medium">${product.reviewsCount} customer reviews</span>
+                    </div>
+                    <div class="text-2xl font-extrabold text-pink-600">
+                        $${product.price.toFixed(2)}
+                        ${product.originalPrice ? `<span class="text-sm font-normal text-gray-400 line-through ml-2">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed font-medium">${product.description}</p>
+                    <div class="pt-4 flex space-x-3">
+                        <button onclick="addToCart(${product.id}); closeQuickView(); toggleCartDrawer();" class="flex-1 bg-pink-500 text-white font-bold py-3 rounded-2xl hover:bg-pink-600 transition shadow-md shadow-pink-200 text-sm">
+                            Add to Bag 💖
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('quick-view-modal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').classList.add('hidden');
+        }
+
+        // Checkout Modal
+        function openCheckoutModal() {
+            toggleCartDrawer();
+            document.getElementById('checkout-modal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            closeCheckoutModal();
+            cart = [];
+            updateCartUI();
+            showNotification('Order placed successfully! Thank you for shopping with Blossom & Bow! 🎀✨', 'success');
+        }
+
+        // Newsletter Handler
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            emailInput.value = '';
+            showNotification('Thank you bestie! Check your inbox for your 15% off coupon code. 🌸', 'success');
+        }
+
+        // Toast Notification Helper
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgColor = type === 'success' ? 'bg-pink-500 text-white' : 'bg-purple-600 text-white';
+            const icon = type === 'success' ? 'fa-circle-check text-pink-100' : 'fa-circle-info text-purple-200';
+
+            toast.className = `${bgColor} px-5 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 text-sm font-bold transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-base"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Countdown Timer simulation
+        function startCountdownTimer() {
+            let totalSeconds = 12 * 3600 + 45 * 60 + 30;
+            setInterval(() => {
+                if (totalSeconds > 0) totalSeconds--;
+                const hours = Math.floor(totalSeconds / 3600);
+                const mins = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+
+                const hEl = document.getElementById('timer-hours');
+                const mEl = document.getElementById('timer-mins');
+                const sEl = document.getElementById('timer-secs');
+
+                if (hEl && mEl && sEl) {
+                    hEl.innerText = String(hours).padStart(2, '0');
+                    mEl.innerText = String(mins).padStart(2, '0');
+                    sEl.innerText = String(secs).padStart(2, '0');
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
